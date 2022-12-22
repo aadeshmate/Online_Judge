@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Online Judge</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="card mx-3 my-4">
+        <h5 class="card-header">{{ question.problem_name }}</h5>
+        {% if question.problem_level == 0 %}
+            <em><b>Easy</b></em>
+        {% endif %}
+        {% if question.problem_level == 1 %}
+           <em><b>Medium</b></em>
+        {% endif %}
+        {% if question.problem_level == 2 %}
+           <em><b>Hard</b></em>
+        {% endif %}
+        <div class="card-body">
+          {% comment %} <h5 class="card-title">{{ question.problem_level }}</h5> {% endcomment %}
+          
+          <p class="card-text font-weight-bold" style="white-space: pre-line">{{ question.problem_desc }}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data" action="{{question.id}}/submitproblem">
+        {% csrf_token %}
+        <div class="form-group mx-4 my-5">
+          <label for="usercode">Choose Cpp File As input</label>
+          <input type="file" class="form-control-file" id="usercode" name="usercode" required>
+          <button type="submit">Upload Code</button>
+        </div>
+    </form>
+    <!-- {% if filelocation %}
+      <p>Uploaded File : <a href="{{filelocation}}">{{filelocation}}</a></p>
+    {% endif %} -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

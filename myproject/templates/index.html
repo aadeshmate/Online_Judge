@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Judge</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body >
+    <h1 class="text-center">Online Judge</h1>
+    {% comment %} <a href="/addproblem" class="btn btn-primary btn-lg active align-self-lg-center" role="button"
+        aria-pressed="true">Add problem</a><br><br> {% endcomment %}
+    <a href="/showproblem" class="btn btn-success btn-lg active align-self-lg-center d-inline-flex p-2" role="button"
+        aria-pressed="true">View problem</a>
+    
+    
+    {% if user.is_authenticated %}
+        You are Logged in as {{request.user}}
+        <br>
+        <a  class="btn btn-primary my-4" href="/logout">
+            Logout
+        </a>
+    {% else %}
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary d-inline-flex p-2" data-toggle="modal" data-target="#signupModal">
+            Sign Up
+        </button>
+        <button type="button" class="btn btn-primary d-inline-flex p-2" data-toggle="modal" data-target="#loginModal">
+            Login
+        </button>
+    {% endif %}
+
+    <!-- SignUp Modal -->
+    <div class="modal fade " id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalTitle">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/signup" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">User name</label>
+                            <input type="text" class="form-control" id="username" placeholder="username"
+                                name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                                name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password"
+                                name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Confirm Password</label>
+                            <input type="password" class="form-control" id="cnfpassword" placeholder="Password"
+                                name="cnfpassword" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Login Modal -->
+
+     <!-- Button trigger modal -->
+    
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalTitle">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/login" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="loginusername">User name</label>
+                            <input type="text" class="form-control" id="loginusername" placeholder="username"
+                                name="loginusername" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginpassword">Password</label>
+                            <input type="password" class="form-control" id="loginpassword" placeholder="Password"
+                                name="loginpassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- {% comment %} <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Primary link</a> {% endcomment %} -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
